@@ -10,7 +10,7 @@
     "summary": "Compute the state of a product's stock using stock available unreserved"
     "the stock level and sale_ok field",
     "version": "13.0.1.0.0",
-    "website": "https://github.com/oca/product-attribute",
+    "website": "https://github.com/OCA/product-attribute",
     "author": " ForgeFlow, Odoo Community Association (OCA)",
     "license": "AGPL-3",
     "application": False,

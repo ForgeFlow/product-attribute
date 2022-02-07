@@ -24,4 +24,3 @@ class ProductProduct(models.Model):
     )
     def _compute_stock_state(self):
         return super()._compute_stock_state()
-
