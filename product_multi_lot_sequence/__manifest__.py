@@ -14,6 +14,6 @@
         "security/ir.model.access.csv",
         "views/product_sequence_views.xml",
         "views/product_views.xml",
-        "views/stock_production_lot_views.xml"
+        # "views/stock_production_lot_views.xml"
     ],
 }
