@@ -20,7 +20,7 @@ class Pricelist(models.Model):
         if (
             self.env["product.product"]._register_hook()
             or self.env["product.template"]._register_hook()
-        ):
+        ) in (None, True):
             Registry(self.env.cr.dbname).registry_invalidated = True
         return res
 
@@ -29,6 +29,7 @@ class Pricelist(models.Model):
         if (
             self.env["product.product"]._register_hook()
             or self.env["product.template"]._register_hook()
-        ):
+        ) in (None, True):
+
             Registry(self.env.cr.dbname).registry_invalidated = True
         return res

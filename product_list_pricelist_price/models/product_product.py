@@ -4,6 +4,7 @@
 from lxml import etree
 
 from odoo import api, fields, models
+from odoo.tools import lazy_property
 
 from odoo.addons.base.models.ir_ui_view import (
     transfer_modifiers_to_node,
@@ -93,4 +94,5 @@ class ProductProduct(models.Model):
             self._add_pricelist_price(field_name, tag_name)
         self._setup_fields()
         self._setup_complete()
+        lazy_property.reset_all(self.env.registry)
         return super(ProductProduct, self)._register_hook()

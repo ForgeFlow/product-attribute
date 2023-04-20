@@ -4,6 +4,7 @@
 from lxml import etree
 
 from odoo import api, fields, models
+from odoo.tools import lazy_property
 
 from odoo.addons.base.models.ir_ui_view import (
     transfer_modifiers_to_node,
@@ -35,6 +36,8 @@ class ProductTemplate(models.Model):
     def fields_view_get(
         self, view_id=None, view_type="form", toolbar=False, submenu=False
     ):
+        # self._compute_product_template_pricelist_price()
+        # Registry(self.env.cr.dbname).registry_invalidated = True
         result = super(ProductTemplate, self).fields_view_get(
             view_id,
             view_type,
@@ -45,6 +48,7 @@ class ProductTemplate(models.Model):
         doc = etree.XML(result["arch"])
         name = result.get("name", False)
         if name == "product.template.pricelist.price":
+
             for placeholder in doc.xpath("//field[@name='type']"):
                 for pricelist in self.env["product.pricelist"].search(
                     [("display_pricelist_price", "=", True)]
@@ -78,9 +82,12 @@ class ProductTemplate(models.Model):
         self._add_field(
             field_name,
             fields.Float(
-                string=tag_name, compute="_compute_product_template_pricelist_price"
+                string=tag_name,
+                default=0.0,
+                compute="_compute_product_template_pricelist_price",
             ),
         )
+
         return True
 
     def _register_hook(self):
@@ -95,4 +102,5 @@ class ProductTemplate(models.Model):
             self._add_pricelist_price(field_name, tag_name)
         self._setup_fields()
         self._setup_complete()
-        return super(ProductTemplate, self)._register_hook()
+        lazy_property.reset_all(self.env.registry)
+        return super()._register_hook()
