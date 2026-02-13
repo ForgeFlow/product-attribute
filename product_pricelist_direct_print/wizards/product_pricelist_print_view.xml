@@ -28,7 +28,6 @@
                         <field name="show_sale_price" />
                         <field name="show_standard_price" />
                         <field name="show_product_uom" />
-                        <field name="show_product_images" />
                     </group>
                     <group string="Order Options">
                         <field name="order_field" />
@@ -36,7 +35,6 @@
                         <field name="max_categ_level" />
                     </group>
                     <group string="Product Options">
-                        <field name="breakage_per_category" />
                         <field
                             name="categ_ids"
                             widget="many2many_tags"
@@ -51,13 +49,8 @@
                             name="show_variants"
                             attrs="{'invisible':[('last_ordered_products', '!=', 0)]}"
                         />
-                        <field name="last_categ_level_to_print" />
                         <field
                             name="last_ordered_products"
-                            attrs="{'invisible':[('partner_count','=',0)]}"
-                        />
-                        <field
-                            name="product_selling_date_threshold"
                             attrs="{'invisible':[('partner_count','=',0)]}"
                         />
                     </group>

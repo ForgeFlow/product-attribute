@@ -59,9 +59,6 @@
                                 <th t-if="o.show_product_uom" class="text-right">
                                     <strong>UoM</strong>
                                 </th>
-                                <th t-if="o.show_product_images" class="text-right">
-                                    <strong>Image</strong>
-                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -73,43 +70,26 @@
                                     t-set="category_products"
                                     t-value="category_group['products']"
                                 />
-                                <td colspan="100" t-if="o.breakage_per_category">
-                                    <strong
-                                        t-esc="o.get_group_name(category_group['group_name'])"
-                                    />
+                                <td colspan="100">
+                                    <strong t-esc="category_group['group_name']" />
                                 </td>
                                 <tr t-foreach="category_products" t-as="product">
                                     <td>
                                         <span t-field="product.display_name" />
                                     </td>
                                     <td t-if="o.show_standard_price" class="text-right">
-                                        <span
-                                            t-field="product.standard_price"
-                                            t-options="{'decimal_precision': 'Product Price'}"
-                                        />
+                                        <span t-field="product.standard_price" />
                                     </td>
                                     <td t-if="o.show_sale_price" class="text-right">
-                                        <span
-                                            t-field="product.list_price"
-                                            t-options="{'decimal_precision': 'Product Price'}"
-                                        />
+                                        <span t-field="product.list_price" />
                                     </td>
                                     <td t-if="pricelist" class="text-right">
                                         <strong
                                             t-field="o.with_context(product=product).product_price"
-                                            t-options="{'decimal_precision': 'Product Price'}"
                                         />
                                     </td>
                                     <td t-if="o.show_product_uom" class="text-right">
                                         <span t-field="product.uom_id.name" />
-                                    </td>
-                                    <td t-if="o.show_product_images" class="text-right">
-                                        <img
-                                            t-if="product.image_128"
-                                            t-att-src="image_data_uri(product.image_128)"
-                                            alt="Img"
-                                            style="max-height: 80px;"
-                                        />
                                     </td>
                                 </tr>
                             </t>

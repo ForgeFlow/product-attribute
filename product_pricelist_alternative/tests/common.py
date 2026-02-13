@@ -22,7 +22,7 @@ class CommonProductPricelistAlternative(common.TransactionCase):
 
         cls.alternative_pricelist_01 = cls.env["product.pricelist"].create(
             {
-                "name": "Alternative pricelist_01",
+                "name": "Alternative pricelist 01",
                 "item_ids": [
                     Command.create(
                         {
@@ -37,7 +37,7 @@ class CommonProductPricelistAlternative(common.TransactionCase):
         )
         cls.alternative_pricelist_02 = cls.env["product.pricelist"].create(
             {
-                "name": "Alternative alternative_pricelist_02",
+                "name": "Alternative pricelist 02",
                 "item_ids": [
                     Command.create(
                         {
@@ -51,25 +51,9 @@ class CommonProductPricelistAlternative(common.TransactionCase):
             }
         )
 
-        cls.alternative_pricelist_03 = cls.env["product.pricelist"].create(
-            {
-                "name": "Alternative alternative_pricelist_03",
-                "item_ids": [
-                    Command.create(
-                        {
-                            "compute_price": "fixed",
-                            "product_id": cls.usb_adapter.id,
-                            "applied_on": "0_product_variant",
-                            "fixed_price": 110,
-                        }
-                    ),
-                ],
-            }
-        )
-
         cls.pricelist01 = cls.env["product.pricelist"].create(
             {
-                "name": "Sale pricelist01",
+                "name": "Sale pricelist",
                 "item_ids": [
                     Command.create(
                         {
@@ -102,7 +86,7 @@ class CommonProductPricelistAlternative(common.TransactionCase):
 
         cls.pricelist02 = cls.env["product.pricelist"].create(
             {
-                "name": "Sale pricelist02",
+                "name": "Sale pricelist",
                 "item_ids": [
                     Command.create(
                         {
@@ -115,25 +99,6 @@ class CommonProductPricelistAlternative(common.TransactionCase):
                 ],
                 "alternative_pricelist_ids": [
                     (4, cls.alternative_pricelist_01.id),
-                ],
-            }
-        )
-
-        cls.pricelist03 = cls.env["product.pricelist"].create(
-            {
-                "name": "Sale pricelist03",
-                "item_ids": [
-                    Command.create(
-                        {
-                            "compute_price": "formula",
-                            "base": "pricelist",
-                            "base_pricelist_id": cls.pricelist01.id,
-                            "applied_on": "3_global",
-                        }
-                    ),
-                ],
-                "alternative_pricelist_ids": [
-                    (4, cls.alternative_pricelist_03.id),
                 ],
             }
         )

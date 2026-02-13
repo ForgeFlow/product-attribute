@@ -21,6 +21,7 @@ class ProductPrintCategory(models.Model):
         string="Company",
         comodel_name="res.company",
         index=True,
+        default=lambda x: x._default_company_id(),
     )
 
     product_ids = fields.One2many(
@@ -54,6 +55,9 @@ class ProductPrintCategory(models.Model):
         domain="[('type', '=', 'qweb')]",
         required=True,
     )
+
+    def _default_company_id(self):
+        return self.env.company
 
     def get_xml_id_view(self):
         return self.qweb_view_id.sudo().key

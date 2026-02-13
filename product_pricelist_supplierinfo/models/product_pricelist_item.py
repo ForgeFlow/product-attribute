@@ -1,6 +1,5 @@
 # Copyright 2018 Tecnativa - Vicent Cubells
 # Copyright 2018 Tecnativa - Pedro M. Baeza
-# Copyright 2025 Tecnativa - Carlos Dauden
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl.html).
 
 from odoo import fields, models
@@ -20,9 +19,6 @@ class ProductPricelistItem(models.Model):
         comodel_name="res.partner",
         string="Supplier filter",
         help="Only match prices from the selected supplier",
-    )
-    ignore_supplierinfo_margin = fields.Boolean(
-        help="Based on supplierinfo price without sale margin applied"
     )
 
     def _compute_price(self, product, quantity, uom, date, currency=None):

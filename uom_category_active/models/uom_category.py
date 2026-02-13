@@ -14,15 +14,12 @@ class UomCategory(models.Model):
         "product category without removing it.",
     )
 
-    @api.model_create_multi
-    def create(self, vals_list):
-        categs = super().create(vals_list)
-        categs.filtered(lambda x: not x.active).mapped("uom_ids").write(
-            {"active": False}
-        )
-        return categs
+    @api.onchange("active")
+    def _onchange_active(self):
+        if not self.active:
+            self.uom_ids.active = False
 
-    def write(self, vals):
-        if "active" in vals and not vals.get("active"):
-            self.mapped("uom_ids").write({"active": False})
-        return super().write(vals)
+    @api.onchange("uom_ids")
+    def _onchange_uom_ids(self):
+        if self.active:
+            return super()._onchange_uom_ids()

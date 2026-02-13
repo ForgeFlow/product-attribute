@@ -4,12 +4,10 @@
         <field name="model">product.template</field>
         <field name="inherit_id" ref="stock.view_template_property_form" />
         <field name="arch" type="xml">
-            <xpath expr="//group[@name='group_lots_and_weight']" position="after">
-                <group name="treshold" string="Stock Threshold">
-                    <field name="stock_state_threshold" />
-                    <field name="manual_stock_state_threshold" class="oe_edit_only" />
-                </group>
-            </xpath>
+            <group name="group_lots_and_weight" position="inside">
+                <field name="stock_state_threshold" />
+                <field name="manual_stock_state_threshold" class="oe_edit_only" />
+            </group>
         </field>
     </record>
 </odoo>
